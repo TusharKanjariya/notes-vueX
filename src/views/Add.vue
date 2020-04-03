@@ -70,6 +70,7 @@ export default {
         this.$store.dispatch("noteUpdate", note);
         this.title = "";
         this.desc = "";
+        this.$router.push("/dashboard");
       }
     }
   }

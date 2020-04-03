@@ -2,18 +2,42 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Add from "../views/Add.vue";
+import Login from "../views/login.vue";
+import store from "../store/index";
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/dashboard',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter(to, from, next) {
+      let d = store.getters.getLoginStatus;
+      if (d) {
+        next();
+      } else {
+        next('/')
+      }
+    }
   },
   {
     path: '/add',
     name: 'Add',
-    component: Add
+    component: Add,
+    beforeEnter(to, from, next) {
+      let d = store.getters.getLoginStatus;
+      if (d) {
+        next();
+      } else {
+        next('/')
+      }
+    }
   },
   {
     path: '/edit/:id',
@@ -29,7 +53,6 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

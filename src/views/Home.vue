@@ -22,7 +22,6 @@ export default {
   },
   mounted() {
     this.noteData = this.$store.getters.getNotes;
-    console.log(this.noteData);
   },
   data: function() {
     return {
@@ -35,9 +34,4 @@ export default {
 </script>
 
 <style>
-header {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 100;
-}
 </style>
